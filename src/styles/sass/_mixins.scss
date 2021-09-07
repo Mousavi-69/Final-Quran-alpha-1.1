@@ -1,0 +1,26 @@
+@import "variables";
+
+
+@mixin textStyle($fontSize:$fontSize,
+$fontWeight:$fontWeight, $fontFamily: $fontFamily,$fontStyle:normal){
+font-size: $fontSize;
+font-weight: $fontWeight;
+font-family: $fontFamily;
+font-style: $fontStyle;
+}
+
+@mixin boxStyle( $bgColor:$primaryColor,
+$brRadius:10px, $boxShadowColor: $boxShadowColor,
+$padding:10px) {
+    background-color: $bgColor;
+    border-radius: $brRadius;
+    box-shadow: 5px 4px 18px 0px $boxShadowColor;
+    padding: $padding;
+}
+@mixin border($brRadius:10px,
+$borderColor:$primaryColor,$bgColor:$bgColor) {
+    border-radius: $brRadius; 
+    border: 1px solid $borderColor;
+    background-color:$bgColor;
+   
+  }
