@@ -9,6 +9,12 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noImplicitAny": true,//اگر نوع any بود باید صراحتا بگیم
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+    },
 
     "lib": ["esnext", "dom"]
   },

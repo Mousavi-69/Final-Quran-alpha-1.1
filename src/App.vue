@@ -1,11 +1,7 @@
 <template>
 <div class="container">
-     <!-- <SearchBox></SearchBox>    -->
-    <br />
-    <!-- <ListSuresPage></ListSuresPage>  -->
-    <br />
     <!-- <router-link></router-link> -->
-   <router-view> </router-view> 
+    <router-view> </router-view>
 </div>
 </template>
 
@@ -13,13 +9,10 @@
 import {
     defineComponent
 } from 'vue'
-import SearchBox from './components/searchBox/SearchBox.vue';
-import ListSuresPage from './pages/ListSures_page/ListSures_page.vue';
 
 export default defineComponent({
     name: 'App',
-    components: {
-        SearchBox    }
+    components: {}
 })
 </script>
 
@@ -28,7 +21,7 @@ export default defineComponent({
 
 .container {
     text-align: center;
-    background-color: $blue;
+    // background-color:red;
 
 }
 </style>

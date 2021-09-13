@@ -4,19 +4,41 @@ const routes = [
   {
     path: "/",
     name: "ListSures",
-    component: () => import("./pages/ListSures_page/ListSures_page.vue")
+    component: () => import("@/pages/ListSures_page.vue")
 
   },
   {
-    path: "/Sure",
-    name: "Sure",
-    component: () => import("./pages/Sure_page/Sure_page.vue")
+    path: "/page/:number",
+    name: "Page",
+    component: () => import("@/pages/Sure_page.vue")
   },
   {
     path: "/Settings",
     name: "Settings",
-    component: () => import("./pages/Settings_page/Settings_page.vue")
+    component: () => import("@/pages/Settings_page.vue")
+
   },
+  {
+    path: "/SidebarMenu",
+    name: "SidebarMenu",
+    component: () => import("@/components/SidebarMenu.vue")
+  },
+  // {
+  //   path: "/Page",
+  //   name: "Page",
+  //   component: () => import("@/components/Page.vue")
+  // },
+  {
+    path: "/Audio",
+    name: "Audio",
+    component: () => import("@/components/AudioPlayer.vue")
+  },
+  {
+    path: "/test",
+    name: "test",
+    component: () => import("@/components/test.vue")
+  },
+
 
 
 ];
