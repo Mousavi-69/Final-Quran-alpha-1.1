@@ -20,7 +20,6 @@
         </ayat>
     </article>
     <div class="audioContaner" v-if="audioStatus">
-        <fa class="exiteIcon" icon="times" @click.stop="closeAudio()" />
 
         <audio-player></audio-player>
     </div>

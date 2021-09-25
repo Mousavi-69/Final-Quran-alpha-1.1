@@ -56,6 +56,20 @@ reciterName,closeAudio,selectResiter
 @import "@/styles/sass/main.scss";
 .audioContaner{
 
+    .exiteIcon{
+        position: absolute;
+        right: 10px;
+        top: 2px;
+        padding: 3px;
+    }
+    .reciterName{
+      
+        padding: 5px;
+        color: $ayeNumber;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
 }
 
 
