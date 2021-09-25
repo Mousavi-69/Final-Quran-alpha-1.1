@@ -107,27 +107,21 @@ export default defineComponent({
             if (currentPageNumber > 556) currentPageNumber = 1;
             return currentPageNumber;
         });
-        console.log('pageNumber=' + pageNumber.value)
 
         watch(pageNumber, (newValue, oldValue) => {
-            //    let [newSuraNumber, newAyaNumber] = pages[newValue];
-            console.log('eeeeeeeeee222=')
-            console.log('pageNumber -- watch ' + newValue)
-
             store.state.firstAyeOfPage_store = indexFirstAyaOfPage.value;
             store.state.firstAyeOfNextPage_store = indexFirstAyaOfNextPage.value;
             store.commit('setAyatListOfPage', newValue)
 
-        })
+        });
 
         let indexFirstAyaOfPage = computed(() => {
-            console.log('pageNumber =' + pageNumber)
 
             return pages[pageNumber.value][1];
         });
         let indexFirstAyaOfNextPage = computed(() => {
             return q_inf[nextSuraNumber.value - 1].start + nextAyaNumber.value;
-        })
+        });
 
         let list = computed(() => store.state.ayatListOfPage)
         store.state.listOfPageLength = computed(() => list.value.length);
