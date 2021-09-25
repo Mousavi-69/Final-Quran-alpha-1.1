@@ -147,6 +147,9 @@ export default defineComponent({
         let sureName = computed(() => q_inf[pages[pageNumber.value][0] - 1].name);
         let juzNumber = computed(() => {
             let [nextSuraNumber, nextAyaNumber] = pages[pageNumber.value];
+            if(nextSuraNumber==2 && nextAyaNumber<142){
+                return 1
+            }
             let curentJuz = Juz.findIndex(item => item[0] == nextSuraNumber);
             if (curentJuz < 1) {
                 curentJuz = chekedCurrentJuz(nextSuraNumber, curentJuz)

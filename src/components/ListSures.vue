@@ -39,9 +39,10 @@ export default defineComponent({
         let filteredList = computed(() => q_inf.filter(item => item.name.includes(store.state.search_value)))
 
         function goSurePage(suraNumber: number) {
-            // let pageNumber = pages.findIndex(page => page[0] >= suraNumber)
-            // if (!(pages[pageNumber][1] === 1 && pages[pageNumber][0] === suraNumber)) pageNumber--
-            store.state.suraNumber_value =suraNumber
+           store.state.selectTranslatorStatus = false;
+            store.state.selectReciterStatuse = false;
+            store.state.sidebarStatus = false;
+            store.state.suraNumber_value =suraNumber;
             router.push({
                 name: 'Page',
                 params: {

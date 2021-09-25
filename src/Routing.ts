@@ -11,8 +11,7 @@ const routes = [
     path: "/page/:number",
     name: "Page",
     component: () => import("@/pages/Sure_page.vue")
-  },
-  
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),

@@ -3,7 +3,7 @@
     <header class="header">
       
         <form action="">
-            <input type="search" v-model="searchValue" @click="hidenMenu" @input="filterText"  placeholder="جستجو ..." />
+            <input type="search" v-model="searchValue" @click="hidenMenu()" @input="filterText"  placeholder="جستجو ..." />
                         <fa class="searchIcon" icon="search" />
 
         </form>
