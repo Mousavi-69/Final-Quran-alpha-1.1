@@ -166,8 +166,19 @@ export default defineComponent({
         function goPreviousPage() {
             pageStatus.value = pageStatus.value - 1
         }
+let wakeLock:any = null;
+const requestWakeLock = async()=>{
+    try {
+         wakeLock = await(navigator as any).wakeLock.request();
+    wakeLock.addEventListener('release',()=>{});
+    } catch (error) {
+        console.log('wakeLock Error :'+error);
+    };
+};
+requestWakeLock();
 
-        return {
+
+        return {wakeLock,
             sureInformation,
             typeOfSure,
             headerStartSure,
