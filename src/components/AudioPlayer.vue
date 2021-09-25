@@ -1,9 +1,11 @@
 <template>
-<div class="container">
-<audio class="audio" controls='contorols' autoplay   >
-<source src="@/data/f_1.mp3" type="audio/mpeg">
-
-</audio>
+<div class="audioContaner">
+    <fa class="exiteIcon" icon="times" @click.stop="closeAudio()" />
+    <span class="reciterName" @click.stop="selectResiter()">{{reciterName}}</span>
+    <audio id="player" class="audio" controls='contorols' autoplay>
+        <source :src="urlAudio" type="audio/mpeg">
+مرورگر شما این ویژگی را پشتیبانی نمیکند، لطفا مرورگر خود را بروزرسانی کنید
+    </audio>
 </div>
 <div class="halfCircular"></div>
 </template>
@@ -27,9 +29,23 @@ export default defineComponent ({
         let router = useRouter();
         let route = useRoute();
         let store = useStore();
+        let urlAudio = computed(()=>store.state.pathCurrentAudio)
+        let reciterName = computed(()=>{
+            if(store.state.Reciter == 'Abdul_Basit_Murattal_64kbps'){
+                return 'عبدالباسط'
+            }else{
+                return 'علی جابر'
+            }
+        });
+        function closeAudio(){
+store.state.audioStatusValue = false;
+        };
+        function selectResiter(){
+store.state.selectReciterStatuse = true;
+        };
 
-        return {
-
+        return {urlAudio,
+reciterName,closeAudio,selectResiter
         }
     }
 
@@ -38,14 +54,9 @@ export default defineComponent ({
 
 <style lang="scss" scoped >
 @import "@/styles/sass/main.scss";
-.container{
+.audioContaner{
 
-.audio{
-      width: 100%;
-    height: 50px;
-
- 
-}}
+}
 
 
 </style>
