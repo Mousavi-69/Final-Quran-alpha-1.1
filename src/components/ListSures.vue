@@ -6,6 +6,7 @@
         <span class="sureType" v-if="i.type == 'Meccan'">مکّی</span>
         <span class="sureType" v-if="i.type == 'Medinan'">مدنی</span>
     </div>
+    <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br/><br/> لطفا با حروف فارسی مجدد تلاش کنید!</p>
 </div>
 </template>
 
@@ -35,9 +36,16 @@ export default defineComponent({
         let router = useRouter();
         let route = useRoute();
         let store = useStore();
+        let StatusAlarmSearch = computed(()=>store.state.alarmSearchStatus);
 
         let filteredList = computed(() => q_inf.filter(item => item.name.includes(store.state.search_value)))
-
+store.state.alarmSearchStatus = computed(()=>{
+if(filteredList.value.length<1){
+    return true
+}else{
+    return false
+}
+});
         function goSurePage(suraNumber: number) {
            store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
@@ -52,7 +60,7 @@ export default defineComponent({
         }
         return {
             filteredList,
-            goSurePage
+            goSurePage,StatusAlarmSearch
         }
     }
 
@@ -70,6 +78,16 @@ export default defineComponent({
     justify-content: center;
     background-color: rgb(243, 243, 243);
     padding: 70px 15px 20px 15px;
+    .alarmSearch{
+        position: absolute;
+        top: 20%;
+        background-color: rgb(226, 228, 113);
+        font-weight: 650;
+font-size: 1.2rem;
+padding: 15px;
+border: 2px solid red;
+border-radius: 20px;
+    }
 }
 
 .list {
