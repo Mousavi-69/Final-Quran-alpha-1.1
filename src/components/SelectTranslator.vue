@@ -69,7 +69,7 @@ function chengeTranslatorToMakarem(){
     z-index: 30;
     will-change: transform;
     padding: 20px 20% 20px 20px;
-    background-color: $bgColor;
+    background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px;
     border: 1PX solid $bgColor;
     text-align: right;

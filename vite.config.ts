@@ -6,14 +6,7 @@ import {VitePWA} from 'vite-plugin-pwa'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(),VitePWA({
-
-    workbox:{
-      sourcemap:true,
-      clientsClaim:true,
-      skipWaiting:true
-    },
-    includeAssets:['favicon.ico','robots.txt'],
-    registerType:'autoUpdate',
+    includeAssets:['favicon.ico','robots.txt', 'apple-touch-icon.png'],
     manifest:{
       name:'QuranApp',
       short_name:'Quran',
@@ -35,7 +28,19 @@ export default defineConfig({
           purpose:'any maskable'
         }
       ]
-    }
+    },
+    workbox:{
+      sourcemap:true,
+      clientsClaim:true,
+      skipWaiting:true,
+      globPatterns: [],
+
+    },
+    injectManifest: {
+      globPatterns: [],
+    }  ,
+    registerType:'autoUpdate',
+   
 
   })],
   server:{

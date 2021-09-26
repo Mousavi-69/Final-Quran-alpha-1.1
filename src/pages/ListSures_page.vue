@@ -55,7 +55,6 @@ export default defineComponent({
 @import "@/styles/sass/main.scss";
 .fixe{
     position: fixed;
-    background-color: $zard;
 }
 
 </style>

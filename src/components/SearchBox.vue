@@ -47,6 +47,8 @@ export default defineComponent({
             store.commit('setSearchValue', searchValue.value);
         };
 function openSidebar(){
+       store.state.selectReciterStatuse = false;
+    store.state.selectTranslatorStatus = false;
 store.commit('openSidebarMenu');
 };
 function hidenMenu(){

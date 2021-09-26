@@ -30,6 +30,8 @@ export default defineComponent({
     setup(props, context) {
         const store = useStore()
 function openMenu(){
+    store.state.selectReciterStatuse = false;
+    store.state.selectTranslatorStatus = false;
 store.commit('openSidebarMenu');
 }
         return {
