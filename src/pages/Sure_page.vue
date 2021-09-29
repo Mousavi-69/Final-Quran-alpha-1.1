@@ -19,13 +19,10 @@
             </template>
         </ayat>
     </article>
-    <div class="audioContaner" v-if="audioStatus">
-
-        <audio-player></audio-player>
-    </div>
-    <sidebar-menu class="fixe" ></sidebar-menu>
-    <select-translator class="fixe" v-if="statusSelectTranslator"></select-translator>
-    <select-reciter class="fixe" v-if="statusSelectReciter"></select-reciter>
+    <audio-player class="fixe"></audio-player>
+    <sidebar-menu class="fixe"></sidebar-menu>
+    <select-translator class="fixe"></select-translator>
+    <select-reciter class="fixe"></select-reciter>
 </div>
 </template>
 
@@ -37,14 +34,11 @@ import {
     watch
 } from 'vue'
 import {
-    useRouter,
     useRoute
 } from "vue-router";
 import {
-    Store,
     useStore
 } from "vuex";
-import quran from '@/data/quran';
 import {
     q_inf,
     pages,
@@ -69,12 +63,9 @@ export default defineComponent({
         SelectTranslator,
         SelectReciter
     },
-    setup(props, context) {
+    setup() {
         let route = useRoute();
         let store = useStore();
-        let statusSelectTranslator = computed(() => store.state.selectTranslatorStatus)
-        let statusSelectReciter = computed(() => store.state.selectReciterStatuse)
-
         let audioStatus = computed(() => store.state.audioStatusValue);
 
         function closeAudio() {
@@ -89,14 +80,14 @@ export default defineComponent({
             }
         });
         let headerStartSure = computed(() => store.state.checkStartSure);
-        let pageStatus = ref(0)
+        let pageStatus = ref(0);
         let suraNumber = ref(+route.params.number);
         let sureInformation = computed(() => q_inf[store.state.suraNumber_value - 1]);
         const pagesLength = pages.length;
         let currentPage = computed(() => {
-            let normalizePage = pages.findIndex(page => page[0] == suraNumber.value) + pageStatus.value
+            let normalizePage = pages.findIndex(page => page[0] == suraNumber.value) + pageStatus.value;
             if (normalizePage < 1) {
-                normalizePage = NormalizePage(suraNumber.value, normalizePage)
+                normalizePage = NormalizePage(suraNumber.value, normalizePage);
             }
             return normalizePage
         });
@@ -191,10 +182,9 @@ export default defineComponent({
             pageStatus,
             goNextPage,
             goPreviousPage,
-            audioStatus,
             closeAudio,
-            statusSelectTranslator,
-            statusSelectReciter
+            audioStatus
+
         }
 
         function chekedCurrentJuz(nextSuraNumber: number, curentJuz: number) {
@@ -310,30 +300,17 @@ export default defineComponent({
 
 }
 
-.audioContaner {
+// .audioContaner {
 
-    z-index: 10;
-    position: fixed;
-    //  top:200px;
-    bottom: 5px;
-    left: 0px;
-    right: 0px;
-    background-color: rgba(206, 206, 206, 0.815);
-    padding: 10px;
-
-    .exiteIcon {
-        z-index: 12;
-        position: absolute;
-        right: 10px;
-        color: $fontColor_Alarm;
-        top: 5px;
-        padding: 3px;
-    }
-
-}
+//     z-index: 10;
+//     position: fixed;
+//     bottom: 0px;
+//      background-color: $bgColor;
+//     padding: 1px;
+// }
 
 .marginBottomPage {
-    margin-bottom: 80px;
+    margin-bottom: 90px;
 }
 
 .fullPage {

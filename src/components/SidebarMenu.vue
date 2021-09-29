@@ -35,7 +35,7 @@ export default {
     setup() {
 
         let store = useStore();
-        let statusAudioPlayer = computed(()=>store.state.sidebarStatus)
+        let statusAudioPlayer = computed(() => store.state.sidebarStatus)
 
         function selectReciter() {
             store.state.selectReciterStatuse = true;
@@ -48,7 +48,8 @@ export default {
         };
         return {
             selectReciter,
-            selectTranslator,statusAudioPlayer
+            selectTranslator,
+            statusAudioPlayer
         }
     }
 
@@ -59,23 +60,24 @@ export default {
 @import "@/styles/sass/main.scss";
 
 .container {
+    will-change: transform;
     position: absolute;
     top: 30%;
     right: -200px;
     z-index: 20;
-    will-change: transform;
     width: 150px;
     height: 200px;
     background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px 0 0 25px;
     border: 1PX solid $bgColor;
-      transition:  transform 1.5s;
-
+    transition: transform 1.5s;
 
     .list {
         padding: 10px;
+
         li {
             padding: 10px;
+
             span {
                 padding-right: 7px;
                 font-size: 1rem;
@@ -87,10 +89,10 @@ export default {
 
     }
 
-
 }
-.transformMenue{
-//  right: 0px;
-transform: translate(-190px);
+
+.transformMenue {
+    //  right: 0px;
+    transform: translate(-190px);
 }
 </style>

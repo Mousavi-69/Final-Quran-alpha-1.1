@@ -1,57 +1,54 @@
 <template>
-<div class="container">
+<div class="container" :class="{'transformMenue':statusSelectTranslator}">
     <div class="list">
-        <input class="radio" type="radio" id="ansarian" name="translator"   @click.stop="chengeTranslatorToAnsarian()" value="ansarian" v-model="translator" />
+        <input class="radio" type="radio" id="ansarian" name="translator" @click.stop="chengeTranslatorToAnsarian()" value="ansarian" v-model="translator" />
         <label>ترجمه انصاریان
         </label>
     </div>
     <div class="list">
-        <input  class="radio" type="radio" id="makarem" name="translator" @click.stop="chengeTranslatorToMakarem()" value="makarem"  v-model="translator"/>
+        <input class="radio" type="radio" id="makarem" name="translator" @click.stop="chengeTranslatorToMakarem()" value="makarem" v-model="translator" />
         <label> ترجمه مکارم شیرازی
         </label> </div>
-  
+
 </div>
 </template>
 
 <script lang="ts">
 import {
-    ref,
     computed
 } from 'vue'
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+
 import {
     useStore
 } from "vuex";
 export default {
     name: "SidebarMenu",
-    setup(props, context) {
-        let router = useRouter();
-        let route = useRoute();
+    setup() {
+
         let store = useStore();
-let translator = computed(()=>store.state.translatorValue);
-console.log('translator   '+translator.value)
-console.log('type translator   '+typeof(translator.value))
+        let statusSelectTranslator = computed(() => store.state.selectTranslatorStatus)
 
-function chengeTranslatorToAnsarian(){
-    store.state.translatorValue = 'ansarian';
-        store.commit('chengeTranslator',translator.value);
-         store.state.selectTranslatorStatus = false;
-    console.log('translator 1   '+translator.value)
+        let translator = computed(() => store.state.translatorValue);
 
-};
-function chengeTranslatorToMakarem(){
-    store.state.translatorValue = 'makarem';
-        store.commit('chengeTranslator',translator.value);
-         store.state.selectTranslatorStatus = false;
-    console.log('translator 1   '+translator.value)
+        function chengeTranslatorToAnsarian() {
+            store.state.translatorValue = 'ansarian';
+            store.commit('chengeTranslator', translator.value);
+            store.state.selectTranslatorStatus = false;
+        };
 
-};
+        function chengeTranslatorToMakarem() {
+            store.state.translatorValue = 'makarem';
+            store.commit('chengeTranslator', translator.value);
+            store.state.selectTranslatorStatus = false;
 
+        };
 
-        return {translator,chengeTranslatorToAnsarian,chengeTranslatorToMakarem}
+        return {
+            statusSelectTranslator,
+            translator,
+            chengeTranslatorToAnsarian,
+            chengeTranslatorToMakarem
+        };
     }
 
 }
@@ -63,27 +60,33 @@ function chengeTranslatorToMakarem(){
 .container {
     will-change: transform;
     position: absolute;
-    top: 25%;
-    left: 30px;
-    right: 30px;
+    width: 60%;
+    top: 30%;
+    right: 100%;
     z-index: 30;
-    will-change: transform;
     padding: 20px 20% 20px 20px;
     background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px;
     border: 1PX solid $bgColor;
     text-align: right;
-    .list{
+    transition: transform 1.5s;
+
+    .list {
         padding: 8px;
-        .radio{
+
+        .radio {
             padding-left: 3px;
-}
+        }
 
- lable{
-    font-size: 2rem;
+        lable {
+            font-size: 2rem;
 
-}
+        }
     }
 
+}
+
+.transformMenue {
+    transform: translate(108%);
 }
 </style>

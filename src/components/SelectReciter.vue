@@ -1,52 +1,51 @@
 <template>
-<div class="container">
+<div class="container" :class="{'transformMenue':statusSelectReciter}">
     <div class="list">
-        <input class="radio" type="radio" name="reciter"   @click.stop="chengeReciter1()" value="Abdul_Basit_Murattal_64kbps" v-model="reciter" />
-        <label>عبدالباسط 
+        <input class="radio" type="radio" name="reciter" @click.stop="chengeReciter1()" value="Abdul_Basit_Murattal_64kbps" v-model="reciter" />
+        <label>عبدالباسط
         </label>
     </div>
     <div class="list">
-        <input  class="radio" type="radio" name="reciter" @click.stop="chengeReciter2()" value="Ali_Jaber_64kbps"  v-model="reciter"/>
+        <input class="radio" type="radio" name="reciter" @click.stop="chengeReciter2()" value="Ali_Jaber_64kbps" v-model="reciter" />
         <label> علی جابر
         </label> </div>
-  
+
 </div>
 </template>
 
 <script lang="ts">
 import {
-    ref,
     computed
 } from 'vue'
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+
 import {
     useStore
 } from "vuex";
 export default {
     name: "SidebarMenu",
-    setup(props, context) {
-        let router = useRouter();
-        let route = useRoute();
+    setup() {
+
         let store = useStore();
-let reciter = computed(()=>store.state.Reciter);
+        let reciter = computed(() => store.state.Reciter);
+        let statusSelectReciter = computed(() => store.state.selectReciterStatuse)
 
-// Ali_Jaber_64kbps/001001.mp3// Abdul_Basit_Murattal_64kbps/001001.mp3
-function chengeReciter1(){
-    store.state.Reciter = 'Abdul_Basit_Murattal_64kbps';
-         store.state.selectReciterStatuse = false;
+        // Ali_Jaber_64kbps/001001.mp3// Abdul_Basit_Murattal_64kbps/001001.mp3
+        function chengeReciter1() {
+            store.state.Reciter = 'Abdul_Basit_Murattal_64kbps';
+            store.state.selectReciterStatuse = false;
+        };
 
-};
-function chengeReciter2(){
-    store.state.Reciter = 'Ali_Jaber_64kbps';
-         store.state.selectReciterStatuse = false;
+        function chengeReciter2() {
+            store.state.Reciter = 'Ali_Jaber_64kbps';
+            store.state.selectReciterStatuse = false;
+        };
 
-};
-
-
-        return {reciter,chengeReciter1,chengeReciter2}
+        return {
+            reciter,
+            chengeReciter1,
+            chengeReciter2,
+            statusSelectReciter
+        };
     }
 
 }
@@ -58,27 +57,33 @@ function chengeReciter2(){
 .container {
     will-change: transform;
     position: absolute;
-    top: 25%;
-    left: 30px;
-    right: 30px;
+    width: 60%;
+    top: 30%;
+    right: 100%;
     z-index: 30;
-    will-change: transform;
     padding: 20px 20% 20px 20px;
     background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px;
     border: 1PX solid $bgColor;
     text-align: right;
-    .list{
+    transition: transform 1.5s;
+
+    .list {
         padding: 8px;
-        .radio{
+
+        .radio {
             padding-left: 3px;
-}
+        }
 
- lable{
-    font-size: 2rem;
+        lable {
+            font-size: 2rem;
 
-}
+        }
     }
 
+}
+
+.transformMenue {
+    transform: translate(108%);
 }
 </style>

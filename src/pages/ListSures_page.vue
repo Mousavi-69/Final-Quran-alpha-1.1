@@ -1,14 +1,14 @@
 <template>
-<div class="container" >
+<div class="container">
     <header class="header">
         <search-box></search-box>
     </header>
     <section class="section">
         <list-sures></list-sures>
     </section>
-    <sidebar-menu class="fixe" ></sidebar-menu>
-    <select-translator class="fixe"  v-if="statusSelectTranslator"></select-translator>
-    <select-reciter class="fixe" v-if="statusSelectReciter" ></select-reciter>
+    <sidebar-menu class="fixe"></sidebar-menu>
+    <select-translator class="fixe"></select-translator>
+    <select-reciter class="fixe"></select-reciter>
 </div>
 </template>
 
@@ -23,33 +23,35 @@ import {
 } from "vuex";
 import SearchBox from '@/components/SearchBox.vue'
 import ListSures from '@/components/ListSures.vue'
- import SidebarMenu from '@/components/SidebarMenu.vue';
- import SelectTranslator from '@/components/SelectTranslator.vue';
- import SelectReciter from '@/components/SelectReciter.vue';
+import SidebarMenu from '@/components/SidebarMenu.vue';
+import SelectTranslator from '@/components/SelectTranslator.vue';
+import SelectReciter from '@/components/SelectReciter.vue';
 
 export default defineComponent({
     components: {
         SearchBox,
         ListSures,
-        SidebarMenu,SelectTranslator,SelectReciter
+        SidebarMenu,
+        SelectTranslator,
+        SelectReciter
 
     },
     setup() {
-      
-        let store = useStore();
-        let statusAudioPlayer = computed(()=>store.state.sidebarStatus)
-        let statusSelectTranslator = computed(()=>store.state.selectTranslatorStatus)
-        let statusSelectReciter = computed(()=>store.state.selectReciterStatuse)
 
-        return {statusAudioPlayer,statusSelectTranslator,statusSelectReciter}
+        let store = useStore();
+        let statusAudioPlayer = computed(() => store.state.sidebarStatus)
+
+        return {
+            statusAudioPlayer
+        }
     }
 })
 </script>
 
 <style lang="scss" scoped>
 @import "@/styles/sass/main.scss";
-.fixe{
+
+.fixe {
     position: fixed;
 }
-
 </style>
