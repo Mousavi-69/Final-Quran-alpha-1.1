@@ -1,7 +1,7 @@
 <template>
 <div class="pages">
+    <sure-inf-box :juzNumber="juzNumber" :pageNumber="pageNumber" :sureName="sureName"></sure-inf-box>
     <article class="page" :class="{'pageHidenOverflow':showOverflow,'marginBottomPage':audioStatus}">
-        <sure-inf-box :juzNumber="juzNumber" :pageNumber="pageNumber" :sureName="sureName"></sure-inf-box>
         <header-start-sure :numberOfAye="sureInformation.ayas" :typeOfSure="typeOfSure" v-if="headerStartSure"></header-start-sure>
         <i class="previousIcon" @click="goPreviousPage()">
             <fa class="previousPage" icon="chevron-left" />
@@ -23,9 +23,9 @@
 
         <audio-player></audio-player>
     </div>
-    <sidebar-menu v-if="statusSidebar"></sidebar-menu>
-    <select-translator v-if="statusSelectTranslator"></select-translator>
-    <select-reciter v-if="statusSelectReciter"></select-reciter>
+    <sidebar-menu class="fixe" v-if="statusSidebar"></sidebar-menu>
+    <select-translator class="fixe" v-if="statusSelectTranslator"></select-translator>
+    <select-reciter class="fixe" v-if="statusSelectReciter"></select-reciter>
 </div>
 </template>
 
@@ -66,7 +66,8 @@ export default defineComponent({
         SureInfBox,
         SidebarMenu,
         HeaderStartSure,
-        SelectTranslator,SelectReciter
+        SelectTranslator,
+        SelectReciter
     },
     setup(props, context) {
         let router = useRouter();
@@ -140,7 +141,7 @@ export default defineComponent({
         let sureName = computed(() => q_inf[pages[pageNumber.value][0] - 1].name);
         let juzNumber = computed(() => {
             let [nextSuraNumber, nextAyaNumber] = pages[pageNumber.value];
-            if(nextSuraNumber==2 && nextAyaNumber<142){
+            if (nextSuraNumber == 2 && nextAyaNumber < 142) {
                 return 1
             }
             let curentJuz = Juz.findIndex(item => item[0] == nextSuraNumber);
@@ -154,25 +155,31 @@ export default defineComponent({
         //header End
 
         function goNextPage() {
-            pageStatus.value = pageStatus.value + 1
-        }
+            pageStatus.value = pageStatus.value + 1;
+            store.state.selectTranslatorStatus = false;
+            store.state.selectReciterStatuse = false;
+            store.state.sidebarStatus = false;
+        };
 
         function goPreviousPage() {
-            pageStatus.value = pageStatus.value - 1
-        }
-let wakeLock:any = null;
-const requestWakeLock = async()=>{
-    try {
-         wakeLock = await(navigator as any).wakeLock.request();
-    wakeLock.addEventListener('release',()=>{});
-    } catch (error) {
-        console.log('wakeLock Error :'+error);
-    };
-};
-requestWakeLock();
+            pageStatus.value = pageStatus.value - 1;
+            store.state.selectTranslatorStatus = false;
+            store.state.selectReciterStatuse = false;
+            store.state.sidebarStatus = false;
+        };
+        let wakeLock: any = null;
+        const requestWakeLock = async () => {
+            try {
+                wakeLock = await (navigator as any).wakeLock.request();
+                wakeLock.addEventListener('release', () => {});
+            } catch (error) {
+                console.log('wakeLock Error :' + error);
+            };
+        };
+        requestWakeLock();
 
-
-        return {wakeLock,
+        return {
+            wakeLock,
             sureInformation,
             typeOfSure,
             headerStartSure,
@@ -189,7 +196,8 @@ requestWakeLock();
             audioStatus,
             closeAudio,
             statusSidebar,
-            statusSelectTranslator,statusSelectReciter
+            statusSelectTranslator,
+            statusSelectReciter
         }
 
         function chekedCurrentJuz(nextSuraNumber: number, curentJuz: number) {
@@ -296,7 +304,9 @@ requestWakeLock();
 @import "@/styles/sass/main.scss";
 
 .page {
-     border: 7px dashed rgb(11, 161, 247);
+    margin-top: 33px;
+    padding: 5px;
+    // border: 7px dashed rgb(11, 161, 247);
     background-color: rgb(252, 252, 252);
     display: flex;
     flex-direction: column;
@@ -365,26 +375,30 @@ requestWakeLock();
 .previousIcon {
     z-index: 5;
     position: fixed;
-    left: 8px;
+    left: 0px;
     top: 50%;
-    padding: 2px;
+    padding: 3px;
 
     .previousPage {
-    color: rgb(0, 0, 0);
+        color: rgb(0, 0, 0);
         font-size: 1.7rem;
     }
-} 
+}
 
 .nextIcon {
     z-index: 5;
     position: fixed;
-    right: 8px;
+    right: 0px;
     top: 50%;
-    padding: 2px;
+    padding: 3px;
 
     .nextPage {
         color: rgb(0, 0, 0);
         font-size: 1.7rem;
     }
+}
+
+.fixe {
+    position: fixed;
 }
 </style>

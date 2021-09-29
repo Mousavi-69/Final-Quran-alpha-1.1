@@ -19,10 +19,6 @@ import {
     defineComponent
 } from 'vue'
 import {
-    useRouter,
-    useRoute
-} from "vue-router";
-import {
     useStore
 } from "vuex";
 import SearchBox from '@/components/SearchBox.vue'
@@ -38,9 +34,8 @@ export default defineComponent({
         SidebarMenu,SelectTranslator,SelectReciter
 
     },
-    setup(props, context) {
-        let router = useRouter();
-        let route = useRoute();
+    setup() {
+      
         let store = useStore();
         let statusAudioPlayer = computed(()=>store.state.sidebarStatus)
         let statusSelectTranslator = computed(()=>store.state.selectTranslatorStatus)

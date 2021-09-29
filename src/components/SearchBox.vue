@@ -3,7 +3,7 @@
     <header class="header">
       
         <form action="">
-            <input type="search" v-model="searchValue" @click="hidenMenu()" @input="filterText"  placeholder="جستجو ..." />
+            <input type="search" v-model="searchValue" @click="closeMenu()" @input="filterText"  placeholder="جستجو ..." />
                         <fa class="searchIcon" icon="search" />
 
         </form>
@@ -17,26 +17,16 @@
 <script lang="ts">
 import {
     ref,
-    computed,
     defineComponent
 } from 'vue'
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
+
 import {
     useStore
 } from "vuex";
-import SidebarMenue from '@/components/SidebarMenue.vue'
-import SidebarMenu from './SidebarMenu.vue';
 
 export default defineComponent({
     name: 'SearchBox',
- components: {
-
-
-    },
-    setup(props, context) {
+    setup() {
         const store = useStore();
         const searchValue = ref(store.state.search_value);
 
@@ -51,14 +41,14 @@ function openSidebar(){
     store.state.selectTranslatorStatus = false;
 store.commit('openSidebarMenu');
 };
-function hidenMenu(){
+function closeMenu(){
       store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
 }
         return {
             searchValue,
-            filterText,openSidebar,hidenMenu
+            filterText,openSidebar,closeMenu
         }
     }
 

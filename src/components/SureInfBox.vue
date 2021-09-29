@@ -1,5 +1,5 @@
 <template>
-<div class='container'>
+<div class='container' @click.stop="closeMenu()">
                <fa class="menuIcon" icon="bars" @click.stop="openMenu()" />
 
  <header class="header">
@@ -33,9 +33,14 @@ function openMenu(){
     store.state.selectReciterStatuse = false;
     store.state.selectTranslatorStatus = false;
 store.commit('openSidebarMenu');
-}
+};
+function closeMenu(){
+      store.state.selectTranslatorStatus = false;
+            store.state.selectReciterStatuse = false;
+            store.state.sidebarStatus = false;
+};
         return {
-openMenu
+openMenu,closeMenu
         }
     }
 
@@ -43,6 +48,13 @@ openMenu
 </script>
 <style lang="scss" scoped >
 @import "@/styles/sass/main.scss";
+.container{
+    z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
  .header {
         display: flex;
         justify-content: space-around;
@@ -52,7 +64,7 @@ openMenu
     }
     .menuIcon{
                 position:absolute;
-                top: 15px;
+                top: 7px;
                 right: 15px;
                  padding: 3px;
                  font-size: 1.1rem;
