@@ -1,12 +1,12 @@
 <template>
-<div class="container">
+<div class="container" >
     <header class="header">
         <search-box></search-box>
     </header>
     <section class="section">
         <list-sures></list-sures>
     </section>
-    <sidebar-menu class="fixe" v-if="statusAudioPlayer"></sidebar-menu>
+    <sidebar-menu class="fixe" ></sidebar-menu>
     <select-translator class="fixe"  v-if="statusSelectTranslator"></select-translator>
     <select-reciter class="fixe" v-if="statusSelectReciter" ></select-reciter>
 </div>

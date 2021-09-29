@@ -23,7 +23,7 @@
 
         <audio-player></audio-player>
     </div>
-    <sidebar-menu class="fixe" v-if="statusSidebar"></sidebar-menu>
+    <sidebar-menu class="fixe" ></sidebar-menu>
     <select-translator class="fixe" v-if="statusSelectTranslator"></select-translator>
     <select-reciter class="fixe" v-if="statusSelectReciter"></select-reciter>
 </div>
@@ -70,10 +70,8 @@ export default defineComponent({
         SelectReciter
     },
     setup(props, context) {
-        let router = useRouter();
         let route = useRoute();
         let store = useStore();
-        let statusSidebar = computed(() => store.state.sidebarStatus)
         let statusSelectTranslator = computed(() => store.state.selectTranslatorStatus)
         let statusSelectReciter = computed(() => store.state.selectReciterStatuse)
 
@@ -195,7 +193,6 @@ export default defineComponent({
             goPreviousPage,
             audioStatus,
             closeAudio,
-            statusSidebar,
             statusSelectTranslator,
             statusSelectReciter
         }
