@@ -25,7 +25,7 @@ import {
     useStore
 } from "vuex";
 import {
-    q_inf, pages
+    q_inf,
 } from "@/data/q_inf";
 
 export default defineComponent({

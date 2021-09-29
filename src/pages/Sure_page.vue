@@ -296,8 +296,7 @@ requestWakeLock();
 @import "@/styles/sass/main.scss";
 
 .page {
-
-    border: 7px dashed rgb(11, 161, 247);
+     border: 7px dashed rgb(11, 161, 247);
     background-color: rgb(252, 252, 252);
     display: flex;
     flex-direction: column;
@@ -341,21 +340,9 @@ requestWakeLock();
 .pageHidenOverflow {
     overflow: hidden;
     text-overflow: ellipsis;
-    //   white-space: nowrap;
 }
 
 .box {
-
-    background: rgb(184, 148, 148);
-    height: auto;
-    // position: relative;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    // position: relative;
-    flex: 1 0 auto;
-
     .aye {
         .countItem_aye {
             position: relative;
@@ -367,9 +354,6 @@ requestWakeLock();
 
     .tarjome {
 
-        // overflow: hidden;
-        //  text-overflow: ellipsis;
-        // white-space: nowrap;
         .countItem_tarjome {
             position: relative;
             left: 3px;
@@ -379,34 +363,28 @@ requestWakeLock();
 }
 
 .previousIcon {
-    // display: flex;
-    // justify-content:  space-around;
     z-index: 5;
-    position: absolute;
+    position: fixed;
     left: 8px;
     top: 50%;
+    padding: 2px;
 
     .previousPage {
-        color: rgb(0, 0, 0);
-        font-size: 1.5rem;
-        background-color: rgb(182, 228, 228);
-        padding: 2px;
+    color: rgb(0, 0, 0);
+        font-size: 1.7rem;
     }
-}
+} 
 
 .nextIcon {
-    // display: flex;
-    // justify-content:  space-around;
     z-index: 5;
-    position: absolute;
+    position: fixed;
     right: 8px;
     top: 50%;
+    padding: 2px;
 
     .nextPage {
         color: rgb(0, 0, 0);
-        font-size: 1.5rem;
-        background-color: rgb(182, 228, 228);
-        padding: 2px;
+        font-size: 1.7rem;
     }
 }
 </style>

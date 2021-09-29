@@ -8,7 +8,7 @@
     </audio>
 </div>
 <div class="halfCircular"></div>
-</template>
+</template> 
 
 <script lang="ts">
 import {

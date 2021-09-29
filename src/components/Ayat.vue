@@ -112,13 +112,15 @@ export default defineComponent({
 
 .container {
     position: relative;
-    // height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: black;
+    margin: 3px 5px;
+    border-radius: 15px;
+    background-color: rgba(122, 215, 231, 0.438);
+    padding: 3px 5px;
 
     .aye {
-        @include boxStyle($lightWhite, 0, rgb(255, 255, 255), 7px);
+        // @include boxStyle($lightWhite, 0, rgb(255, 255, 255), 7px);
         @include textStyle;
         display: inline-flexbox;
         flex-direction: column;
@@ -128,9 +130,8 @@ export default defineComponent({
     }
 
     .tarjome {
-        @include boxStyle($lightWhite, 0, rgb(255, 255, 255), 5px);
-        @include textStyle(rgb(107, 107, 107), $fontSize_tarjome, 700);
-        background-color: $bgColor_tarjome;
+        // @include boxStyle($lightWhite, 0, rgb(255, 255, 255), 5px);
+        @include textStyle(rgb(165, 165, 165), $fontSize_tarjome, 700,);
         color: $fontColor_tarjome;
         display: inline-flexbox;
         flex-direction: column;
@@ -152,7 +153,6 @@ export default defineComponent({
 
     .option {
         position: absolute;
-        //  width: calc(100%-7px);
         left: 0px;
         right: 0;
         z-index: 10;
