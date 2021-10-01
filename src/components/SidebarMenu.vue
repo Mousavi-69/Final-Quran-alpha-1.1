@@ -63,9 +63,10 @@ export default {
     will-change: transform;
     position: absolute;
     top: 30%;
-    right: -200px;
+      right: -50%;
+    // left: 50%;
     z-index: 20;
-    width: 150px;
+    // width: 150px;
     height: 200px;
     background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px 0 0 25px;
@@ -93,6 +94,6 @@ export default {
 
 .transformMenue {
     //  right: 0px;
-    transform: translate(-190px);
+    transform: translate(-125%);
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
 <div class="container">
+    <div>
     <header class="header">
         <search-box></search-box>
     </header>
     <section class="section">
         <list-sures></list-sures>
     </section>
+    </div>
     <sidebar-menu class="fixe"></sidebar-menu>
     <select-translator class="fixe"></select-translator>
     <select-reciter class="fixe"></select-reciter>

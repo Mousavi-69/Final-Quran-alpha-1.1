@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 <div class="pages">
     <sure-inf-box :juzNumber="juzNumber" :pageNumber="pageNumber" :sureName="sureName"></sure-inf-box>
     <article class="page" :class="{'pageHidenOverflow':showOverflow,'marginBottomPage':audioStatus}">
@@ -19,7 +20,9 @@
             </template>
         </ayat>
     </article>
-    <audio-player class="fixe" ></audio-player>
+   
+</div>
+ <audio-player class="fixe" ></audio-player>
     <sidebar-menu class="fixe"></sidebar-menu>
     <select-translator class="fixe"></select-translator>
     <select-reciter class="fixe"></select-reciter>
@@ -291,6 +294,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/styles/sass/main.scss";
 
+.container{
+    
+
+}
 .page {
     margin-top: 33px;
     padding: 5px;
@@ -300,15 +307,6 @@ export default defineComponent({
     flex-direction: column;
 
 }
-
-// .audioContaner {
-
-//     z-index: 10;
-//     position: fixed;
-//     bottom: 0px;
-//      background-color: $bgColor;
-//     padding: 1px;
-// }
 
 .marginBottomPage {
     margin-bottom: 90px;
@@ -326,7 +324,6 @@ export default defineComponent({
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 
 .previousIcon {
     z-index: 5;
@@ -359,8 +356,5 @@ export default defineComponent({
 }
 
 
-.transformMenue {
-    transform: translate(-150%);
 
-}
 </style>
