@@ -1,19 +1,19 @@
 <template>
-<div class="audioContaner">
+<div class="audioContainer" v-if="audioStatus" >
     <fa class="exiteIcon" icon="times" @click.stop="closeAudio()" />
     <span class="reciterName" @click.stop="selectResiter()">{{reciterName}}</span>
     <audio id="player" class="audio" controls='contorols' autoplay>
         <source :src="urlAudio" type="audio/mpeg">
-مرورگر شما این ویژگی را پشتیبانی نمیکند، لطفا مرورگر خود را بروزرسانی کنید
+        مرورگر شما این ویژگی را پشتیبانی نمیکند، لطفا مرورگر خود را بروزرسانی کنید
     </audio>
 </div>
-<div class="halfCircular"></div>
-</template> 
+</template>
 
 <script lang="ts">
 import {
     ref,
-    computed,defineComponent
+    computed,
+    defineComponent
 } from 'vue'
 import {
     useRouter,
@@ -22,49 +22,66 @@ import {
 import {
     useStore
 } from "vuex";
-export default defineComponent ({
+export default defineComponent({
     name: 'AudioPlayer',
 
     setup(props: any, context: any) {
         let router = useRouter();
         let route = useRoute();
         let store = useStore();
-        let urlAudio = computed(()=>store.state.pathCurrentAudio)
-        let reciterName = computed(()=>{
-            if(store.state.Reciter == 'Abdul_Basit_Murattal_64kbps'){
+        let audioStatus = computed(() => store.state.audioStatusValue);
+
+        let urlAudio = computed(() => store.state.pathCurrentAudio)
+        let reciterName = computed(() => {
+            if (store.state.Reciter == 'Abdul_Basit_Murattal_64kbps') {
                 return 'عبدالباسط'
-            }else{
+            } else {
                 return 'علی جابر'
             }
         });
-        function closeAudio(){
-store.state.audioStatusValue = false;
-        };
-        function selectResiter(){
-store.state.selectReciterStatuse = true;
+
+        function closeAudio() {
+            store.state.audioStatusValue = false;
         };
 
-        return {urlAudio,
-reciterName,closeAudio,selectResiter
+        function selectResiter() {
+            store.state.selectReciterStatuse = true;
+        };
+
+        return {
+            urlAudio,
+            reciterName,
+            closeAudio,
+            selectResiter,
+            audioStatus
         }
     }
 
 })
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 @import "@/styles/sass/main.scss";
-.audioContaner{
 
-    .exiteIcon{
+.audioContainer {
+    position: relative;
+    //  bottom: -16%;
+     bottom: 0px;
+// left: -150%;
+    background-color: $bgColor;
+    padding: 5px;
+    transition: transform 1s;
+    z-index: 30;
+    .exiteIcon {
         position: absolute;
         right: 10px;
         top: 2px;
         padding: 3px;
     }
-    .reciterName{
-      
-        padding: 5px;
+
+    .reciterName {
+margin: 2px;
+        padding: 8px;
         color: $ayeNumber;
         font-size: 1.2rem;
         font-weight: 700;
@@ -72,5 +89,8 @@ reciterName,closeAudio,selectResiter
 
 }
 
-
+.transformMenue {
+    // transform: translate(0, -114%);
+    transform: translate(0,-100%);
+}
 </style>

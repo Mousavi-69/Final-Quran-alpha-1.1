@@ -6,7 +6,7 @@
         <span class="sureType" v-if="i.type == 'Meccan'">مکّی</span>
         <span class="sureType" v-if="i.type == 'Medinan'">مدنی</span>
     </div>
-    <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br/><br/> لطفا با حروف فارسی مجدد تلاش کنید!</p>
+    <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br /><br /> لطفا با حروف فارسی مجدد تلاش کنید!</p>
 </div>
 </template>
 
@@ -18,8 +18,7 @@ import {
 } from 'vue'
 
 import {
-    useRouter,
-    useRoute
+    useRouter
 } from "vue-router";
 import {
     useStore
@@ -32,25 +31,25 @@ export default defineComponent({
 
     name: 'ListSures',
 
-    setup(props, context) {
+    setup() {
         let router = useRouter();
-        let route = useRoute();
         let store = useStore();
-        let StatusAlarmSearch = computed(()=>store.state.alarmSearchStatus);
+        let StatusAlarmSearch = computed(() => store.state.alarmSearchStatus);
 
-        let filteredList = computed(() => q_inf.filter(item => item.name.includes(store.state.search_value)))
-store.state.alarmSearchStatus = computed(()=>{
-if(filteredList.value.length<1){
-    return true
-}else{
-    return false
-}
-});
+        let filteredList = computed(() => q_inf.filter(item => item.name.includes(store.state.search_value)));
+        store.state.alarmSearchStatus = computed(() => {
+            if (filteredList.value.length < 1) {
+                return true
+            } else {
+                return false
+            }
+        });
+
         function goSurePage(suraNumber: number) {
-           store.state.selectTranslatorStatus = false;
+            store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
-            store.state.suraNumber_value =suraNumber;
+            store.state.suraNumber_value = suraNumber;
             router.push({
                 name: 'Page',
                 params: {
@@ -60,7 +59,8 @@ if(filteredList.value.length<1){
         }
         return {
             filteredList,
-            goSurePage,StatusAlarmSearch
+            goSurePage,
+            StatusAlarmSearch
         }
     }
 
@@ -78,15 +78,16 @@ if(filteredList.value.length<1){
     justify-content: center;
     background-color: rgb(243, 243, 243);
     padding: 70px 15px 20px 15px;
-    .alarmSearch{
+
+    .alarmSearch {
         position: absolute;
         top: 20%;
         background-color: rgb(226, 228, 113);
         font-weight: 650;
-font-size: 1.2rem;
-padding: 15px;
-border: 2px solid red;
-border-radius: 20px;
+        font-size: 1.2rem;
+        padding: 15px;
+        border: 2px solid red;
+        border-radius: 20px;
     }
 }
 
@@ -112,7 +113,8 @@ border-radius: 20px;
 
     }
 
-    .sureType {        @include textStyle($fontColor, 1rem, 550)
-}
+    .sureType {
+        @include textStyle($fontColor, 1rem, 550)
+    }
 }
 </style>

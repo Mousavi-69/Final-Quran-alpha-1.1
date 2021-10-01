@@ -2,22 +2,24 @@
 <template>
 <div class="container" @click="showHidenOption()">
 
-    <p class="aye">
-        <slot name="aye"></slot>
+    <p class="aye"  >
+       <mark class="beforMark" :class="{'mark':StatusMark}"><slot name="aye"></slot></mark>
     </p>
     <p class="tarjome" @click.stop="showAllText()" :class="{'hidenTextTarjome':showTextClass,'centerTarjome':!showTextClass}">
         <slot name="tarjome"></slot>
     </p>
-    <div class="option" v-if="showOptionStatus">
-        <span class="save" @click.stop="saveAye()">
-            <fa class="saveIcon" icon="save" />
-        </span>
-        <span class="play" @click="playAye(index)">
-            <fa class="playIcon" icon="play-circle" />
-        </span>
-        <span class="share" @click.stop="shareAye()">
-            <fa class="shareIcon" icon="share-alt-square" />
-        </span>
+    <div class="option" :class="{'transformMenue':statusShowOption}">
+        <div class="optionParent">
+            <span class="save" @click.stop="saveAye()">
+                <fa class="saveIcon" icon="save" />
+            </span>
+            <span class="play" @click="playAye(index)">
+                <fa class="playIcon" icon="play-circle" />
+            </span>
+            <span class="share" @click.stop="shareAye()">
+                <fa class="shareIcon" icon="share-alt-square" />
+            </span>
+        </div>
     </div>
 </div>
 </template>
@@ -41,17 +43,17 @@ export default defineComponent({
     components: {
 
     },
-    setup(props, context) {
-        let router = useRouter();
+    setup(props: any, context: any) {
         let route = useRoute();
+
         let store = useStore();
         let aye = ref();
         let tarjome = ref();
-        const showOptionStatus = ref(false);
+        let statusShowOption = ref(false);
         let showTextClass = ref(true);
-
+let StatusMark=ref(false);
         function showHidenOption() {
-            showOptionStatus.value = showOptionStatus.value ? false : true;
+            statusShowOption.value = statusShowOption.value ? false : true;
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
@@ -71,22 +73,13 @@ export default defineComponent({
         };
 
         function playAye(index: number) {
-            console.log('index   :' + index)
             store.commit('createPath', index);
-            if (store.state.audioStatusValue) {
-                store.state.audioStatusValue = false;
-                store.state.audioStatusValue = true;
-
-            } else {
-                store.state.audioStatusValue = true;
-            }
-
-        };
-        // async function getCurrentAudio() {
-        //     const response = await fetch(store.state.pathCurrentAudio);
-        //     const json = await response.json();
-        //     store.state.currentAudoi = json;
-        // };
+            store.state.audioStatusValue = true;
+        StatusMark.value = StatusMark.value ? false : true;
+            // async () => {
+            //     const response = await fetch(store.state.pathCurrentAudio);
+            //     store.state.audio = await response.json();
+        }
 
         function shareAye() {
 
@@ -94,13 +87,13 @@ export default defineComponent({
         return {
             aye,
             tarjome,
-            showOptionStatus,
+            statusShowOption,
             showHidenOption,
             showAllText,
             showTextClass,
             saveAye,
             playAye,
-            shareAye,
+            shareAye,StatusMark
         }
     }
 
@@ -131,7 +124,7 @@ export default defineComponent({
 
     .tarjome {
         // @include boxStyle($lightWhite, 0, rgb(255, 255, 255), 5px);
-        @include textStyle(rgb(165, 165, 165), $fontSize_tarjome, 700,);
+        @include textStyle(rgb(165, 165, 165), $fontSize_tarjome, 700, );
         color: $fontColor_tarjome;
         display: inline-flexbox;
         flex-direction: column;
@@ -152,18 +145,21 @@ export default defineComponent({
     }
 
     .option {
+        will-change: transform;
         position: absolute;
-        left: 0px;
-        right: 0;
-        z-index: 10;
-        bottom: 1px;
-        display: flex;
-        justify-content: space-around;
-        background-color: rgba(148, 147, 147, 0.219);
-        border-radius: 5PX;
-        // box-shadow: 5px 4px 18px 0px rgb(180, 180, 180) ;
-        padding: 6PX;
-        font-weight: 700;
+        width: 50%;
+        left: 100%;
+        bottom: 0px;
+        transition: transform 1s;
+
+        .optionParent {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(255, 255, 255, 0.87);
+            border-radius: 20PX 20PX 0px 0px;
+            padding: 4PX;
+            font-weight: 700;
+        }
 
         .playIcon,
         .saveIcon,
@@ -173,5 +169,17 @@ export default defineComponent({
         }
     }
 
+}
+
+.transformMenue {
+    transform: translate(-150%);
+
+}
+.beforMark{
+    background-color: rgba(255, 255, 255, 0);
+
+}
+.mark{
+    background-color: rgb(255, 244, 91);
 }
 </style>

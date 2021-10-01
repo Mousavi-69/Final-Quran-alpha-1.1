@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container" :class="{'transformMenue':statusAudioPlayer}">
     <ul class='list'>
         <li @click.stop="">
             <fa class="searchIcon" icon="search" />
@@ -24,33 +24,32 @@
 <script lang="ts">
 import {
     ref,
-    computed
+    computed,
 } from 'vue'
-import {
-    useRouter,
-    useRoute
-} from "vue-router";
 import {
     useStore
 } from "vuex";
 export default {
     name: "SidebarMenu",
 
-    setup(props: any, context: any) {
-        let router = useRouter();
-        let route = useRoute();
-        let store = useStore();
+    setup() {
 
-function selectReciter(){
-    store.state.selectReciterStatuse = true;
-store.state.sidebarStatus = false;
-};
-function selectTranslator(){
-store.state.selectTranslatorStatus = true;
-store.state.sidebarStatus = false;
-};
+        let store = useStore();
+        let statusAudioPlayer = computed(() => store.state.sidebarStatus)
+
+        function selectReciter() {
+            store.state.selectReciterStatuse = true;
+            store.state.sidebarStatus = false;
+        };
+
+        function selectTranslator() {
+            store.state.selectTranslatorStatus = true;
+            store.state.sidebarStatus = false;
+        };
         return {
-selectReciter,selectTranslator,
+            selectReciter,
+            selectTranslator,
+            statusAudioPlayer
         }
     }
 
@@ -61,23 +60,23 @@ selectReciter,selectTranslator,
 @import "@/styles/sass/main.scss";
 
 .container {
+    will-change: transform;
     position: absolute;
     top: 30%;
-
+      right: -50%;
+    // left: 50%;
     z-index: 20;
-    will-change: transform;
-    width: 150px;
+    // width: 150px;
     height: 200px;
     background-color: rgba(236, 236, 236, 0.932);
     border-radius: 25px 0 0 25px;
     border: 1PX solid $bgColor;
+    transition: transform 1.5s;
 
     .list {
-
         padding: 10px;
 
         li {
-            // margin-bottom: 20px;
             padding: 10px;
 
             span {
@@ -91,5 +90,10 @@ selectReciter,selectTranslator,
 
     }
 
+}
+
+.transformMenue {
+    //  right: 0px;
+    transform: translate(-125%);
 }
 </style>

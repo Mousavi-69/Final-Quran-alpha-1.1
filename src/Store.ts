@@ -41,6 +41,8 @@ const store = createStore({
             sidebarStatus: false,
             selectTranslatorStatus: false,
             alarmSearchStatus:false,
+            audio:'',
+            showOptionStatus:false,
 
         };
     },
