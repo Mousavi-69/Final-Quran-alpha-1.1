@@ -6,7 +6,7 @@
         <span class="sureType" v-if="i.type == 'Meccan'">مکّی</span>
         <span class="sureType" v-if="i.type == 'Medinan'">مدنی</span>
     </div>
-    <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br /><br /> لطفا با حروف فارسی مجدد تلاش کنید!</p>
+    <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br/><br/> لطفا با حروف فارسی مجدد تلاش کنید!</p>
 </div>
 </template>
 
@@ -50,6 +50,7 @@ export default defineComponent({
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
             store.state.suraNumber_value = suraNumber;
+            store.commit('DynamicImport')
             router.push({
                 name: 'Page',
                 params: {

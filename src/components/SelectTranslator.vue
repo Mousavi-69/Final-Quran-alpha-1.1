@@ -1,12 +1,12 @@
 <template>
 <div class="container" :class="{'transformMenue':statusSelectTranslator}">
-    <div class="list">
-        <input class="radio" type="radio" id="ansarian" name="translator" @click.stop="chengeTranslatorToAnsarian()" value="ansarian" v-model="translator" />
+    <div class="list" @click.stop="chengeTranslatorToAnsarian()">
+        <input class="radio" type="radio" id="ansarian" name="translator"  value="ansarian" v-model="translator" />
         <label>ترجمه انصاریان
         </label>
     </div>
-    <div class="list">
-        <input class="radio" type="radio" id="makarem" name="translator" @click.stop="chengeTranslatorToMakarem()" value="makarem" v-model="translator" />
+    <div class="list" @click.stop="chengeTranslatorToMakarem()">
+        <input class="radio" type="radio" id="makarem" name="translator"  value="makarem" v-model="translator" />
         <label> ترجمه مکارم شیرازی
         </label> </div>
 
@@ -32,13 +32,13 @@ export default {
 
         function chengeTranslatorToAnsarian() {
             store.state.translatorValue = 'ansarian';
-            store.commit('chengeTranslator', translator.value);
+            store.commit('chengeTranslator');
             store.state.selectTranslatorStatus = false;
         };
 
         function chengeTranslatorToMakarem() {
             store.state.translatorValue = 'makarem';
-            store.commit('chengeTranslator', translator.value);
+            store.commit('chengeTranslator');
             store.state.selectTranslatorStatus = false;
 
         };

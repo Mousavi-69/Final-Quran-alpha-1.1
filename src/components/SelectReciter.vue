@@ -1,12 +1,12 @@
 <template>
 <div class="container" :class="{'transformMenue':statusSelectReciter}">
-    <div class="list">
-        <input class="radio" type="radio" name="reciter" @click.stop="chengeReciter1()" value="Abdul_Basit_Murattal_64kbps" v-model="reciter" />
+    <div class="list" @click.stop="chengeReciter1()">
+        <input class="radio" type="radio" name="reciter"  value="Abdul_Basit_Murattal_64kbps" v-model="reciter" />
         <label>عبدالباسط
         </label>
     </div>
-    <div class="list">
-        <input class="radio" type="radio" name="reciter" @click.stop="chengeReciter2()" value="Ali_Jaber_64kbps" v-model="reciter" />
+    <div class="list"  @click.stop="chengeReciter2()">
+        <input class="radio" type="radio" name="reciter" value="Ali_Jaber_64kbps" v-model="reciter" />
         <label> علی جابر
         </label> </div>
 

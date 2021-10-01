@@ -105,8 +105,7 @@ export default defineComponent({
         watch(pageNumber, (newValue, oldValue) => {
             store.state.firstAyeOfPage_store = indexFirstAyaOfPage.value;
             store.state.firstAyeOfNextPage_store = indexFirstAyaOfNextPage.value;
-            store.commit('setAyatListOfPage', newValue)
-
+            store.commit('setAyatListOfPage', newValue);
         });
 
         let indexFirstAyaOfPage = computed(() => {
