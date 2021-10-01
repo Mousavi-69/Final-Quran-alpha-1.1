@@ -10,7 +10,7 @@
             <fa class="nextPage" icon="chevron-right" />
         </i>
 
-        <ayat class="box" v-for="(item, i) in list" :key="i" :index="i">
+        <ayat class="box" v-for="(item, i) in list" :key="i" :index="i" >
             <template class="aye" v-slot:aye>
                 {{ item }}
             </template>
@@ -19,7 +19,7 @@
             </template>
         </ayat>
     </article>
-    <audio-player class="fixe"></audio-player>
+    <audio-player class="fixe" ></audio-player>
     <sidebar-menu class="fixe"></sidebar-menu>
     <select-translator class="fixe"></select-translator>
     <select-reciter class="fixe"></select-reciter>
@@ -67,6 +67,7 @@ export default defineComponent({
         let route = useRoute();
         let store = useStore();
         let audioStatus = computed(() => store.state.audioStatusValue);
+        let statusShowOption = computed(()=>store.state.showOptionStatus);
 
         function closeAudio() {
             store.state.audioStatusValue = false;
@@ -183,7 +184,7 @@ export default defineComponent({
             goNextPage,
             goPreviousPage,
             closeAudio,
-            audioStatus
+            audioStatus,statusShowOption
 
         }
 
@@ -326,25 +327,6 @@ export default defineComponent({
     text-overflow: ellipsis;
 }
 
-.box {
-    .aye {
-        .countItem_aye {
-            position: relative;
-            left: 3px;
-            color: $ayeNumber;
-            font-size: $fontSizeAyeNumber;
-        }
-    }
-
-    .tarjome {
-
-        .countItem_tarjome {
-            position: relative;
-            left: 3px;
-        }
-    }
-
-}
 
 .previousIcon {
     z-index: 5;
@@ -374,5 +356,11 @@ export default defineComponent({
 
 .fixe {
     position: fixed;
+}
+
+
+.transformMenue {
+    transform: translate(-150%);
+
 }
 </style>

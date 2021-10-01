@@ -1,5 +1,5 @@
 <template>
-<div class="audioContaner" :class="{'transformMenue':audioStatus}">
+<div class="audioContainer" v-if="audioStatus" >
     <fa class="exiteIcon" icon="times" @click.stop="closeAudio()" />
     <span class="reciterName" @click.stop="selectResiter()">{{reciterName}}</span>
     <audio id="player" class="audio" controls='contorols' autoplay>
@@ -63,12 +63,15 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/styles/sass/main.scss";
 
-.audioContaner {
+.audioContainer {
     position: relative;
-    bottom: -16%;
+    //  bottom: -16%;
+     bottom: 0px;
+// left: -150%;
     background-color: $bgColor;
     padding: 5px;
     transition: transform 1s;
+    z-index: 30;
     .exiteIcon {
         position: absolute;
         right: 10px;
@@ -77,8 +80,8 @@ export default defineComponent({
     }
 
     .reciterName {
-
-        padding: 5px;
+margin: 2px;
+        padding: 8px;
         color: $ayeNumber;
         font-size: 1.2rem;
         font-weight: 700;
@@ -87,6 +90,7 @@ export default defineComponent({
 }
 
 .transformMenue {
-    transform: translate(0, -114%);
+    // transform: translate(0, -114%);
+    transform: translate(0,-100%);
 }
 </style>

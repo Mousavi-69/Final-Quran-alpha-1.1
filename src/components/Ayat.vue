@@ -2,13 +2,13 @@
 <template>
 <div class="container" @click="showHidenOption()">
 
-    <p class="aye">
-        <slot name="aye"></slot>
+    <p class="aye"  >
+       <mark class="beforMark" :class="{'mark':StatusMark}"><slot name="aye"></slot></mark>
     </p>
     <p class="tarjome" @click.stop="showAllText()" :class="{'hidenTextTarjome':showTextClass,'centerTarjome':!showTextClass}">
         <slot name="tarjome"></slot>
     </p>
-    <div class="option" :class="{'transformMenue':showOptionStatus}">
+    <div class="option" :class="{'transformMenue':statusShowOption}">
         <div class="optionParent">
             <span class="save" @click.stop="saveAye()">
                 <fa class="saveIcon" icon="save" />
@@ -44,15 +44,16 @@ export default defineComponent({
 
     },
     setup(props: any, context: any) {
+        let route = useRoute();
 
         let store = useStore();
         let aye = ref();
         let tarjome = ref();
-        let showOptionStatus = ref(false);
+        let statusShowOption = ref(false);
         let showTextClass = ref(true);
-
+let StatusMark=ref(false);
         function showHidenOption() {
-            showOptionStatus.value = showOptionStatus.value ? false : true;
+            statusShowOption.value = statusShowOption.value ? false : true;
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
@@ -73,30 +74,29 @@ export default defineComponent({
 
         function playAye(index: number) {
             store.commit('createPath', index);
-
             store.state.audioStatusValue = true;
-            async () => {
-                const response = await fetch(store.state.pathCurrentAudio);
-                store.state.audio = await response.json();
-            }
-
-            function shareAye() {
-
-            };
-            return {
-                aye,
-                tarjome,
-                showOptionStatus,
-                showHidenOption,
-                showAllText,
-                showTextClass,
-                saveAye,
-                playAye,
-                shareAye,
-            }
+        StatusMark.value = StatusMark.value ? false : true;
+            // async () => {
+            //     const response = await fetch(store.state.pathCurrentAudio);
+            //     store.state.audio = await response.json();
         }
 
+        function shareAye() {
+
+        };
+        return {
+            aye,
+            tarjome,
+            statusShowOption,
+            showHidenOption,
+            showAllText,
+            showTextClass,
+            saveAye,
+            playAye,
+            shareAye,StatusMark
+        }
     }
+
 })
 </script>
 
@@ -174,5 +174,12 @@ export default defineComponent({
 .transformMenue {
     transform: translate(-150%);
 
+}
+.beforMark{
+    background-color: rgba(255, 255, 255, 0);
+
+}
+.mark{
+    background-color: rgb(255, 244, 91);
 }
 </style>
