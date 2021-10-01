@@ -1,13 +1,13 @@
 import { createStore } from "vuex";
-import quran from '@/data/quran';
+// import quran from '@/data/quran';
 import {
     q_inf,
     pages,
 } from "@/data/q_inf";
-import ansarian
-    from '@/data/tarjomeh/fa.ansarian';
-import makarem
-    from '@/data/tarjomeh/fa.makarem';
+// import ansarian
+//     from '@/data/tarjomeh/ansarian';
+// import makarem
+//     from '@/data/tarjomeh/makarem';
 
 
 const store = createStore({
@@ -19,7 +19,7 @@ const store = createStore({
             showOverflowClass: true,
             firstAyeOfPage_store: 1,
             firstAyeOfNextPage_store: 8,
-            ayatList: quran.split("\n"),
+            ayatList: '',
             lengthAllAyat: 0,
             ayatListOfPage: {},
             listOfPageLength: 0,
@@ -27,9 +27,10 @@ const store = createStore({
             pagesInformation: pages,
             checkStartSure: false,
             translatorValue: 'ansarian',
-            translateAllAnsarian: ansarian.split("\n"),
-            translateAllMakarem: makarem.split("\n"),
-            tarjome: ansarian.split("\n"),
+            // translateAllAnsarian: ansarian.split("\n"),
+            // translateAllMakarem: makarem.split("\n"),
+            // tarjome: ansarian.split("\n"),
+            tarjome: '',
             tarjomeOfCurrentPage: {},
             pathCurrentAudio: '',
             Reciter: 'Abdul_Basit_Murattal_64kbps',
@@ -40,9 +41,9 @@ const store = createStore({
             audioStatusValue: false,
             sidebarStatus: false,
             selectTranslatorStatus: false,
-            alarmSearchStatus:false,
-            audio:'',
-            showOptionStatus:false,
+            alarmSearchStatus: false,
+            audio: '',
+            showOptionStatus: false,
 
         };
     },
@@ -51,6 +52,7 @@ const store = createStore({
             state.search_value = value
         },
         setAyatListOfPage(state: any, pageNumber) {
+
             state.lengthAllAyat = state.ayatList.length;
             state.suraNumber_value = state.pagesInformation[pageNumber][0];
             let SuraNumber = state.suraNumber_value;
@@ -75,6 +77,7 @@ const store = createStore({
             let normalizeAyat;
             let ayatLength;
             let normalizeTarjome;
+            store.commit('chengeTranslator');
             if (afterSuraNumber > SuraNumber) {
                 indexEndAyeOfPage = ayasOfCurrentSure + startAyeOfCurrentSure
                 if (SuraNumber == 1) {
@@ -82,6 +85,7 @@ const store = createStore({
                     indexStartayeOfPage = 1
                     normalizeAyat = state.ayatList.slice(indexStartayeOfPage, indexEndAyeOfPage);
                     ayatLength = normalizeAyat.length;
+
                     normalizeTarjome = state.tarjome.slice(1, 1 + ayatLength);
                 } else if (SuraNumber > beforSuraNumber && !(SuraNumber == 1)) {
                     state.checkStartSure = true;
@@ -163,18 +167,20 @@ const store = createStore({
 
             state.sidebarStatus = state.sidebarStatus ? false : true;
         },
-        chengeTranslator(state: any, newTranslator: string) {
-            console.log('type state.translatorValue ;  ' + typeof (state.translatorValue))
-            console.log(' state.translatorValue ;  ' + state.translatorValue)
-            console.log(' state.tarjome  : ' + state.tarjome[1])
-            console.log(' newTranslator : ' + newTranslator)
-
-            state.translatorValue = newTranslator;
-            if (newTranslator == 'ansarian') {
-                state.tarjome = state.translateAllAnsarian;
+        chengeTranslator(state: any) {
+            if (state.translatorValue == 'ansarian') {
+                import('@/data/tarjomeh/ansarian')
+                    .then((res) => state.tarjome = (res.default).split("\n"))
             } else {
-                state.tarjome = state.translateAllMakarem;
-            }
+                import('@/data/tarjomeh/makarem')
+                    .then((res) => state.tarjome = (res.default).split("\n"))
+
+            };
+        },
+
+        DynamicImport(state: any) {
+            import('@/data/quran')
+                .then((res) => state.ayatList = (res.default).split("\n"));
         }
     },
     actions: {
