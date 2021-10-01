@@ -1,11 +1,12 @@
 import { createStore } from "vuex";
-// import quran from '@/data/quran';
+import quran from '@/data/quran';
 import {
     q_inf,
     pages,
 } from "@/data/q_inf";
-// import ansarian
-//     from '@/data/tarjomeh/ansarian';
+ import ansarian
+     from '@/data/tarjomeh/ansarian';
+import { computed } from "vue";
 // import makarem
 //     from '@/data/tarjomeh/makarem';
 
@@ -19,7 +20,7 @@ const store = createStore({
             showOverflowClass: true,
             firstAyeOfPage_store: 1,
             firstAyeOfNextPage_store: 8,
-            ayatList: '',
+            ayatList:quran.split('\n'),
             lengthAllAyat: 0,
             ayatListOfPage: {},
             listOfPageLength: 0,
@@ -27,9 +28,9 @@ const store = createStore({
             pagesInformation: pages,
             checkStartSure: false,
             translatorValue: 'ansarian',
-            // translateAllAnsarian: ansarian.split("\n"),
+            translateAllAnsarian: ansarian.split("\n"),
             // translateAllMakarem: makarem.split("\n"),
-            // tarjome: ansarian.split("\n"),
+            //  tarjome: ansarian.split("\n"),
             tarjome: '',
             tarjomeOfCurrentPage: {},
             pathCurrentAudio: '',
@@ -127,9 +128,9 @@ const store = createStore({
                     state.checkStartSure = false;
                     normalizeAyat = state.ayatList.slice(indexStartayeOfPage, indexEndAyeOfPage);
                     ayatLength = normalizeAyat.length;
-                    normalizeTarjome = state.tarjome.slice(startAyeOfCurrentSure + AyaNumber, (startAyeOfCurrentSure + AyaNumber) + ayatLength);
+                    normalizeTarjome =state.tarjome.slice(startAyeOfCurrentSure + AyaNumber, (startAyeOfCurrentSure + AyaNumber) + ayatLength);
+                
                 }
-
             }
             state.ayatListOfPage = normalizeAyat;
             state.tarjomeOfCurrentPage = normalizeTarjome;
@@ -169,8 +170,7 @@ const store = createStore({
         },
         chengeTranslator(state: any) {
             if (state.translatorValue == 'ansarian') {
-                import('@/data/tarjomeh/ansarian')
-                    .then((res) => state.tarjome = (res.default).split("\n"))
+               state.tarjome = state.translateAllAnsarian
             } else {
                 import('@/data/tarjomeh/makarem')
                     .then((res) => state.tarjome = (res.default).split("\n"))
@@ -178,10 +178,6 @@ const store = createStore({
             };
         },
 
-        DynamicImport(state: any) {
-            import('@/data/quran')
-                .then((res) => state.ayatList = (res.default).split("\n"));
-        }
     },
     actions: {
 
