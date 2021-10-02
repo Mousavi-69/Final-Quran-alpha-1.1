@@ -10,9 +10,9 @@
         <li @click.stop="selectTranslator()">
             <fa class="tarjomeIcon" icon="globe-asia" />
             <span>انتخاب ترجمه</span></li>
-        <li @click.stop="">
+        <li @click.stop="ChangeFont()">
             <fa class="fontSizeIcon" icon="font" />
-            <span>تغییر اندازه قلم </span></li>
+            <span> فونت-اندازه قلم </span></li>
         <li>
             <fa class="exitIcon" icon="times" />
             <span>خروج</span> </li>
@@ -46,10 +46,17 @@ export default {
             store.state.selectTranslatorStatus = true;
             store.state.sidebarStatus = false;
         };
+
+        function ChangeFont() {
+            store.state.changeFontStatus = true;
+            store.state.sidebarStatus = false;
+
+        };
         return {
             selectReciter,
             selectTranslator,
-            statusAudioPlayer
+            statusAudioPlayer,
+            ChangeFont
         }
     }
 
@@ -63,7 +70,7 @@ export default {
     will-change: transform;
     position: absolute;
     top: 30%;
-      right: -50%;
+    right: -50%;
     // left: 50%;
     z-index: 20;
     // width: 150px;
@@ -94,6 +101,6 @@ export default {
 
 .transformMenue {
     //  right: 0px;
-    transform: translate(-125%);
+    transform: translate(-120%);
 }
 </style>

@@ -11,6 +11,7 @@
     <sidebar-menu class="fixe"></sidebar-menu>
     <select-translator class="fixe"></select-translator>
     <select-reciter class="fixe"></select-reciter>
+    <changeFont class="fixe" ></changeFont>
 </div>
 </template>
 
@@ -26,17 +27,18 @@ import {
 import SearchBox from '@/components/SearchBox.vue'
 import ListSures from '@/components/ListSures.vue'
 import SidebarMenu from '@/components/SidebarMenu.vue';
-import SelectTranslator from '@/components/SelectTranslator.vue';
-import SelectReciter from '@/components/SelectReciter.vue';
+// import SelectTranslator from '@/components/SelectTranslator.vue';
+// import SelectReciter from '@/components/SelectReciter.vue';
+import ChangeFont from '@/components/ChangeFont.vue';
 
 export default defineComponent({
     components: {
         SearchBox,
         ListSures,
         SidebarMenu,
-        SelectTranslator,
-        SelectReciter
-
+        // SelectTranslator,
+        // SelectReciter,
+        ChangeFont
     },
     setup() {
 
@@ -44,7 +46,7 @@ export default defineComponent({
         let statusAudioPlayer = computed(() => store.state.sidebarStatus)
 
         return {
-            statusAudioPlayer
+            statusAudioPlayer,
         }
     }
 })

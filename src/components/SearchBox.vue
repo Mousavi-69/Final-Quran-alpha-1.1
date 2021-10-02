@@ -32,12 +32,15 @@ export default defineComponent({
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
+            store.state.changeFontStatus = false;
+
             store.commit('setSearchValue', searchValue.value);
         };
 
         function openSidebar() {
             store.state.selectReciterStatuse = false;
             store.state.selectTranslatorStatus = false;
+            store.state.changeFontStatus = false;
             store.commit('openSidebarMenu');
         };
 
@@ -45,6 +48,8 @@ export default defineComponent({
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
+            store.state.changeFontStatus = false;
+
         }
         return {
             searchValue,

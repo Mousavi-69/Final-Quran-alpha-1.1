@@ -1,31 +1,33 @@
 <template>
 <div class="container">
-<div class="pages">
-    <sure-inf-box :juzNumber="juzNumber" :pageNumber="pageNumber" :sureName="sureName"></sure-inf-box>
-    <article class="page" :class="{'pageHidenOverflow':showOverflow,'marginBottomPage':audioStatus}">
-        <header-start-sure :numberOfAye="sureInformation.ayas" :typeOfSure="typeOfSure" v-if="headerStartSure"></header-start-sure>
-        <i class="previousIcon" @click="goPreviousPage()">
-            <fa class="previousPage" icon="chevron-left" />
-        </i>
-        <i class="nextIcon" @click="goNextPage()">
-            <fa class="nextPage" icon="chevron-right" />
-        </i>
+    <div class="pages">
+        <sure-inf-box :juzNumber="juzNumber" :pageNumber="pageNumber" :sureName="sureName"></sure-inf-box>
+        <article class="page" :class="{'pageHidenOverflow':showOverflow,'marginBottomPage':audioStatus}">
+            <header-start-sure :numberOfAye="sureInformation.ayas" :typeOfSure="typeOfSure" v-if="headerStartSure"></header-start-sure>
+            <i class="previousIcon" @click="goPreviousPage()">
+                <fa class="previousPage" icon="chevron-left" />
+            </i>
+            <i class="nextIcon" @click="goNextPage()">
+                <fa class="nextPage" icon="chevron-right" />
+            </i>
 
-        <ayat class="box" v-for="(item, i) in list" :key="i" :index="i" >
-            <template class="aye" v-slot:aye>
-                {{ item }}
-            </template>
-            <template class="tarjome" v-slot:tarjome>
-                {{currenttarjome[i]}}
-            </template>
-        </ayat>
-    </article>
-   
-</div>
- <audio-player class="fixe" ></audio-player>
+            <ayat class="box" v-for="(item, i) in list" :key="i" :index="i">
+                <template class="aye" v-slot:aye>
+                    {{ item }}
+                </template>
+                <template class="tarjome" v-slot:tarjome>
+                    {{currenttarjome[i]}}
+                </template>
+            </ayat>
+        </article>
+
+    </div>
+    <audio-player class="fixe"></audio-player>
     <sidebar-menu class="fixe"></sidebar-menu>
     <select-translator class="fixe"></select-translator>
     <select-reciter class="fixe"></select-reciter>
+    <changeFont class="fixe"></changeFont>
+
 </div>
 </template>
 
@@ -54,6 +56,7 @@ import SidebarMenu from '@/components/SidebarMenu.vue'
 import HeaderStartSure from '@/components/HeaderStartSure.vue'
 import SelectTranslator from '@/components/SelectTranslator.vue'
 import SelectReciter from '@/components/SelectReciter.vue'
+import ChangeFont from '@/components/ChangeFont.vue';
 
 export default defineComponent({
     name: 'Page',
@@ -64,16 +67,18 @@ export default defineComponent({
         SidebarMenu,
         HeaderStartSure,
         SelectTranslator,
-        SelectReciter
+        SelectReciter,
+        ChangeFont
     },
     setup() {
         let route = useRoute();
         let store = useStore();
         let audioStatus = computed(() => store.state.audioStatusValue);
-        let statusShowOption = computed(()=>store.state.showOptionStatus);
+        let statusShowOption = computed(() => store.state.showOptionStatus);
 
         function closeAudio() {
             store.state.audioStatusValue = false;
+            store.state.changeFontStatus = false;
 
         };
         let typeOfSure = computed(() => {
@@ -151,6 +156,8 @@ export default defineComponent({
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
+            store.state.changeFontStatus = false;
+
         };
 
         function goPreviousPage() {
@@ -158,6 +165,8 @@ export default defineComponent({
             store.state.selectTranslatorStatus = false;
             store.state.selectReciterStatuse = false;
             store.state.sidebarStatus = false;
+            store.state.changeFontStatus = false;
+
         };
         let wakeLock: any = null;
         const requestWakeLock = async () => {
@@ -186,7 +195,8 @@ export default defineComponent({
             goNextPage,
             goPreviousPage,
             closeAudio,
-            audioStatus,statusShowOption
+            audioStatus,
+            statusShowOption
 
         }
 
@@ -293,10 +303,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/styles/sass/main.scss";
 
-.container{
-    
+.container {}
 
-}
 .page {
     margin-top: 33px;
     padding: 5px;
@@ -353,7 +361,4 @@ export default defineComponent({
 .fixe {
     position: fixed;
 }
-
-
-
 </style>

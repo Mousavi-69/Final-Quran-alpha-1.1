@@ -1,10 +1,10 @@
 <template>
 <div class="container">
     <div class="list" v-for="i in filteredList" :key="i.id" @click="goSurePage(i.id)">
-        <span class="sureIndex">{{i.id}}</span>
-        <span class="sureName">{{i.name}}</span>
-        <span class="sureType" v-if="i.type == 'Meccan'">مکّی</span>
-        <span class="sureType" v-if="i.type == 'Medinan'">مدنی</span>
+        <span class="sureIndex" :class="{'vazir':vazirFont,'yekan':!vazirFont}" >{{i.id}}</span>
+        <span class="sureName" :class="{'vazir':vazirFont,'yekan':!vazirFont}">{{i.name}}</span>
+        <span class="sureType" v-if="i.type == 'Meccan'" :class="{'vazir':vazirFont,'yekan':!vazirFont}">مکّی</span>
+        <span class="sureType" v-if="i.type == 'Medinan'" :class="{'vazir':vazirFont,'yekan':!vazirFont}">مدنی</span>
     </div>
     <p class="alarmSearch" v-if="StatusAlarmSearch">جستجوی شما نتیجه ای در بر نداشت <br/><br/> لطفا با حروف فارسی مجدد تلاش کنید!</p>
 </div>
@@ -57,11 +57,19 @@ export default defineComponent({
                     number: suraNumber
                 }
             })
-        }
+        };
+let vazirFont  =computed(()=>{
+if( store.state.fontValue = 'Vazir'){
+    return true
+}else{
+    return false
+}
+});
+        
         return {
             filteredList,
             goSurePage,
-            StatusAlarmSearch
+            StatusAlarmSearch,vazirFont
         }
     }
 
@@ -117,5 +125,12 @@ export default defineComponent({
     .sureType {
         @include textStyle($fontColor, 1rem, 550)
     }
+}
+.vazir{
+    font-family: Vazir;
+}
+.yekan{
+        font-family: Yekan;
+
 }
 </style>

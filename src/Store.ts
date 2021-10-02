@@ -29,8 +29,6 @@ const store = createStore({
             checkStartSure: false,
             translatorValue: 'ansarian',
             translateAllAnsarian: ansarian.split("\n"),
-            // translateAllMakarem: makarem.split("\n"),
-            //  tarjome: ansarian.split("\n"),
             tarjome: '',
             tarjomeOfCurrentPage: {},
             pathCurrentAudio: '',
@@ -45,6 +43,8 @@ const store = createStore({
             alarmSearchStatus: false,
             audio: '',
             showOptionStatus: false,
+            changeFontStatus:false,
+            fontValue:'Yekan',
 
         };
     },
