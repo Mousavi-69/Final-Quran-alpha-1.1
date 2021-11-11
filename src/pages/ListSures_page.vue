@@ -27,8 +27,6 @@ import {
 import SearchBox from '@/components/SearchBox.vue'
 import ListSures from '@/components/ListSures.vue'
 import SidebarMenu from '@/components/SidebarMenu.vue';
-// import SelectTranslator from '@/components/SelectTranslator.vue';
-// import SelectReciter from '@/components/SelectReciter.vue';
 import ChangeFont from '@/components/ChangeFont.vue';
 
 export default defineComponent({
@@ -36,8 +34,6 @@ export default defineComponent({
         SearchBox,
         ListSures,
         SidebarMenu,
-        // SelectTranslator,
-        // SelectReciter,
         ChangeFont
     },
     setup() {
@@ -53,7 +49,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/sass/main.scss";
 
 .fixe {
     position: fixed;

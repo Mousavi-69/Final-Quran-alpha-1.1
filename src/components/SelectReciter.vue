@@ -28,8 +28,6 @@ export default {
         let store = useStore();
         let reciter = computed(() => store.state.Reciter);
         let statusSelectReciter = computed(() => store.state.selectReciterStatuse)
-
-        // Ali_Jaber_64kbps/001001.mp3// Abdul_Basit_Murattal_64kbps/001001.mp3
         function chengeReciter1() {
             store.state.Reciter = 'Abdul_Basit_Murattal_64kbps';
             store.state.selectReciterStatuse = false;
@@ -52,7 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/sass/main.scss";
 
 .container {
     will-change: transform;

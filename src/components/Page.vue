@@ -35,7 +35,6 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped >
-@import "@/styles/sass/main.scss";
 .page{
     // width: 100%;
     // height:600px;

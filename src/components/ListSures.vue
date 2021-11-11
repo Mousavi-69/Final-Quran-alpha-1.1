@@ -77,7 +77,6 @@ if( store.state.fontValue = 'Vazir'){
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/sass/main.scss";
 
 .container {
     display: flex;

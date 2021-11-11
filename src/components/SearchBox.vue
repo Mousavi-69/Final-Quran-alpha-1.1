@@ -63,7 +63,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/sass/main.scss";
 
 .container {
     height: 30px;

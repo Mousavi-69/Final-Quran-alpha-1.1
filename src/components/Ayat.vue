@@ -101,7 +101,6 @@ let StatusMark=ref(false);
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/sass/main.scss";
 
 .container {
     position: relative;
