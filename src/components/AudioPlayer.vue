@@ -2,7 +2,7 @@
 <div class="audioContainer" v-if="audioStatus" >
     <fa class="exiteIcon" icon="times" @click.stop="closeAudio()" />
     <span class="reciterName" @click.stop="selectResiter()">{{reciterName}}</span>
-    <audio id="player" class="audio" controls='contorols' autoplay>
+    <audio id="player" class="audio"  autoplay>
         <source :src="urlAudio" type="audio/mpeg">
         مرورگر شما این ویژگی را پشتیبانی نمیکند، لطفا مرورگر خود را بروزرسانی کنید
     </audio>
